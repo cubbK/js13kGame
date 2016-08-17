@@ -1,14 +1,17 @@
-var canvas = document.getElementById("myCanvas");
+var canvas = document.getElementById("gameCanvas");
+canvas.width = window.innerWidth;
+
 var ctx = canvas.getContext("2d");
 
+var borderLeft = canvas.width /2 - 450;
+var borderRight = canvas.width /2 +450;
 var color1 = " #efeff2 ";
 var color2 = " #000d11";
 
 var posTvs = [];
 var width = 900;
-for (var i = 0;i <5;i++){
-  posTvs[i] =[ Math.round(Math.random() * width) , Math.round(Math.random() *(-2500) -50)];
-
+for (var i = 0;i <7;i++){
+  posTvs[i] = returnPosArray();
 }
 function drawPlayer(pos) {
   //main square
@@ -68,21 +71,44 @@ function keyUpHandler(e) {
     }
 }
 
+class GlitchCubb {
+
+  static cubb(posx,posy){
+    var colors = ['#ff3939' , '#00ce00' ,'#00deff' ,'#007b4a'];
+    ctx.beginPath();
+    ctx.rect(posx, posy, 10,10);
+    ctx.fillStyle = colors[Math.floor(Math.random()*colors.length)];;
+    ctx.fill();
+    ctx.closePath();
+  }
+}
+
 function draw() {
   ctx.clearRect(pos[0],pos[1],50,75)
 
 
-  if (rightPressed && pos[0]< canvas.width - 50 ){
+  if (rightPressed && pos[0]< borderRight - 50 ){
     pos[0] +=6;
-  }else if(leftPressed && pos[0] > 0){
+  }else if(leftPressed && pos[0] > borderLeft){
     pos[0] -=6;
   }
 
 
 
-  for (var i = 0 ; i <5 ; i++){
-    ctx.clearRect(posTvs[i][0] , posTvs[i][1] , 100 , 100)
-    posTvs[i][1] +=3;
+  for (var i = 0 ; i <7 ; i++){
+    ctx.clearRect(posTvs[i][0] , posTvs[i][1] , 100 , 100);
+
+    if(posTvs[i][0]< borderLeft - 30 || posTvs[i][0] >borderRight-50){
+
+      posTvs[i][2] = -posTvs[i][2];
+
+    }
+    if (posTvs[i][1] > canvas.height){
+      posTvs[i] = returnPosArray();
+    }
+
+    posTvs[i][0] +=posTvs[i][2];
+    posTvs[i][1] +=posTvs[i][3];
     drawTv(posTvs[i], i);
   }
   drawPlayer(pos);
@@ -92,7 +118,7 @@ setInterval(draw,10);
 
 
 function drawTv(posTv , index) {
-  var colors = ['#ff3939' , '#00ce00' ,'#00deff' ,'#007b4a'];
+
   ctx.clearRect(posTv[0],posTv[1],90,90)
   for (var i = 0 ; i < 9;i++){
     for (var j = 0 ; j <9; j++){
@@ -108,16 +134,23 @@ function drawTv(posTv , index) {
         isTrue = true;
       }
       if(isTrue){
-        ctx.beginPath();
-        ctx.rect(posTv[0]+i *10, posTv[1] +j *10, 10,10);
-        ctx.fillStyle = colors[Math.floor(Math.random()*colors.length)];;
-        ctx.fill();
-        ctx.closePath();
+
+        GlitchCubb.cubb(posTv[0]+i *10, posTv[1] +j *10);
       }
 
     }
   }
+}
 
-
-
+function returnPosArray (){
+  var posX =  Math.round(Math.random() * (borderRight - borderLeft) + borderLeft);
+  var posY  = Math.round(Math.random() *(-2500) -50);
+  var dirX;
+  var dirY  = Math.round(Math.random() *7+3);
+  if (Math.random() >0.5){
+    dirX = Math.round(Math.random() *5);
+  }else {
+    dirX = Math.round(Math.random() * -5);
+  }
+  return [ posX, posY,dirX,dirY ];
 }
