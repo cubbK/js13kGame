@@ -98,7 +98,7 @@ function draw() {
   for (var i = 0 ; i <7 ; i++){
     ctx.clearRect(posTvs[i][0] , posTvs[i][1] , 100 , 100);
 
-    if(posTvs[i][0]< borderLeft - 30 || posTvs[i][0] >borderRight-50){
+    if(posTvs[i][0]< borderLeft  || posTvs[i][0] >borderRight-100){
 
       posTvs[i][2] = -posTvs[i][2];
 
@@ -143,7 +143,8 @@ function drawTv(posTv , index) {
 }
 
 function returnPosArray (){
-  var posX =  Math.round(Math.random() * (borderRight - borderLeft) + borderLeft);
+  var posX =  Math.round(Math.random() * (borderRight-100 - borderLeft) + borderLeft);
+
   var posY  = Math.round(Math.random() *(-2500) -50);
   var dirX;
   var dirY  = Math.round(Math.random() *7+3);
