@@ -74,7 +74,7 @@ function keyUpHandler(e) {
 class GlitchCubb {
 
   static cubb(posx,posy){
-    var colors = ['#ff3939' , '#00ce00' ,'#00deff' ,'#007b4a'];
+    var colors = ['#5E5E5E' , '#D4D4D4' ,'#F7F7F7' ,'#4A4A4A'];
     ctx.beginPath();
     ctx.rect(posx, posy, 10,10);
     ctx.fillStyle = colors[Math.floor(Math.random()*colors.length)];;
@@ -84,7 +84,7 @@ class GlitchCubb {
 }
 
 function draw() {
-  ctx.clearRect(pos[0],pos[1],50,75)
+  ctx.clearRect(pos[0],pos[1],51,76)
 
 
   if (rightPressed && pos[0]< borderRight - 50 ){
@@ -110,11 +110,17 @@ function draw() {
     posTvs[i][0] +=posTvs[i][2];
     posTvs[i][1] +=posTvs[i][3];
     drawTv(posTvs[i], i);
+
+    var isDead = checkIfDead(posTvs[i]);
+    if(isDead){
+      console.log('DEAD');
+    }
   }
   drawPlayer(pos);
 
+
 }
-setInterval(draw,10);
+var drawInervar = setInterval(draw,10);
 
 
 function drawTv(posTv , index) {
@@ -154,4 +160,12 @@ function returnPosArray (){
     dirX = Math.round(Math.random() * -5);
   }
   return [ posX, posY,dirX,dirY ];
+}
+
+function checkIfDead(posTv) {
+    if (posTv[0] +80 > pos[0] && posTv[0] +80  < pos[0]+50 && posTv[1]+80 > pos[1] && posTv[1]+80 < pos[1] +75){
+      alert('dead');
+      return true;
+    }
+    return false;
 }
