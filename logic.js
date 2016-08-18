@@ -19,7 +19,7 @@ function startLogic() {
   var drawInervar = setInterval(draw,10);
 }
 
-function drawPlayer(pos) {
+function drawPlayer(pos ) {
   //main square
   ctx.beginPath();
   ctx.rect(pos[0], pos[1], 50,75);

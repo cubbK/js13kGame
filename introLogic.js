@@ -18,7 +18,48 @@ function drawDocumentBorders() {
 
   ctx.strokeStyle = color1;
   ctx.stroke();
-
+  ctx.closePath();
 
 }
+
+function drawPhotoFrame() {
+  var pointFrame = [  canvas.width/2 -195 ,75];
+  ctx.beginPath();
+  ctx.rect(pointFrame[0] , pointFrame[1], 125,140);
+  ctx.lineWidth = 10;
+  ctx.strokeStyle = 'color1';
+  ctx.stroke();
+  ctx.closePath();
+}
+function drawPlayerPortrer(pos) {
+  //corp
+  ctx.beginPath();
+  ctx.rect(pos[0] , pos[1] , 85 , 110);
+  ctx.fillStyle = color1;
+  ctx.fill();
+  ctx.closePath();
+
+  //left eye
+  ctx.beginPath();
+  ctx.arc(pos[0] +25, pos[1] +25, 15, 0, Math.PI*2, false);
+  ctx.fillStyle = color2;
+  ctx.fill();
+  ctx.closePath();
+
+  //right eye
+  ctx.beginPath();
+  ctx.arc(pos[0] +60, pos[1] +25, 15, 0, Math.PI*2, false);
+  ctx.fillStyle = color2;
+  ctx.fill();
+  ctx.closePath();
+
+  // mouth
+  ctx.beginPath();
+  ctx.arc(pos[0] +40, pos[1] +80, 25, 3, Math.PI*2, false);
+  ctx.fillStyle = color2;
+  ctx.fill();
+  ctx.closePath();
+}
 drawDocumentBorders();
+drawPhotoFrame();
+drawPlayerPortrer([canvas.width/2 -175 , 100]);
