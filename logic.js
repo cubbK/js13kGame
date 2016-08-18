@@ -8,11 +8,17 @@ var borderRight = canvas.width /2 +450;
 var color1 = " #efeff2 ";
 var color2 = " #000d11";
 
+pos = [canvas.width/2 -50,canvas.height-75]
 var posTvs = [];
 var width = 900;
 for (var i = 0;i <7;i++){
   posTvs[i] = returnPosArray();
 }
+
+function startLogic() {
+  var drawInervar = setInterval(draw,10);
+}
+
 function drawPlayer(pos) {
   //main square
   ctx.beginPath();
@@ -45,7 +51,7 @@ function drawPlayer(pos) {
 
 }
 
-pos = [canvas.width/2 -50,canvas.height-75]
+
 
 
 document.addEventListener("keydown", keyDownHandler, false);
@@ -120,7 +126,7 @@ function draw() {
 
 
 }
-var drawInervar = setInterval(draw,10);
+
 
 
 function drawTv(posTv , index) {
@@ -164,7 +170,7 @@ function returnPosArray (){
 
 function checkIfDead(posTv) {
     if (posTv[0] +80 > pos[0] && posTv[0] +80  < pos[0]+50 && posTv[1]+80 > pos[1] && posTv[1]+80 < pos[1] +75){
-      alert('dead');
+
       return true;
     }
     return false;

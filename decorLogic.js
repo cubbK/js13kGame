@@ -12,27 +12,28 @@ function drawHouse(pos) {
 function drawAllHouses(){
   ctx.clearRect(-10 , -10 , borderLeft-10,755);
   ctx.clearRect(borderRight+10 , -10 , canvas.width+10,755);
-  drawHouse([-10 , -10 , borderLeft-10,755]);
-  drawHouse([borderRight+10 , -10 , canvas.width+10,755]);
+
   //left part
-  for(var i = borderLeft -100; i >-100; i-=125){
-    for (var j = 25; j < canvas.height -50; j+=125){
+  for(var i = borderLeft -50; i >-100; i-=40){
+    for (var j = 0; j < canvas.height -50; j+=40){
       var rand = Math.random();
-      if (rand>0.3){
+      if (rand>0.4){
           drawPlayer([i,j])
       }
 
     }
   }
   //right part
-  for(var i = borderRight +50; i< canvas.width ; i+=125){
-    for (var j = 25 ; j < canvas.height -50; j+=125){
+  for(var i = borderRight ; i< canvas.width ; i+=40){
+    for (var j = 0 ; j < canvas.height -50; j+=40){
       var rand = Math.random();
-      if (rand>0.3){
+      if (rand>0.4){
           drawPlayer([i,j])
       }
 
     }
   }
 }
-setInterval(drawAllHouses,300);
+function startLogicDecor() {
+    setInterval(drawAllHouses,150);
+}
