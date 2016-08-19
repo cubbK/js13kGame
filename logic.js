@@ -8,6 +8,8 @@ var borderRight = canvas.width /2 +450;
 var color1 = " #efeff2 ";
 var color2 = " #000d11";
 
+var score = 0;
+
 pos = [canvas.width/2 -50,canvas.height-75]
 var posTvs = [];
 var width = 900;
@@ -16,7 +18,7 @@ for (var i = 0;i <7;i++){
 }
 
 function startLogic() {
-  var drawInervar = setInterval(draw,10);
+  drawInerval = setInterval(draw,10);
 }
 
 function drawPlayer(pos ) {
@@ -57,6 +59,7 @@ function drawPlayer(pos ) {
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
+
 var rightPressed = false;
 var leftPressed = false;
 function keyDownHandler(e) {
@@ -88,7 +91,7 @@ class GlitchCubb {
     ctx.closePath();
   }
 }
-
+var aMuritOData = false;
 function draw() {
   ctx.clearRect(pos[0],pos[1],51,76)
 
@@ -110,6 +113,7 @@ function draw() {
 
     }
     if (posTvs[i][1] > canvas.height){
+      score++;
       posTvs[i] = returnPosArray();
     }
 
@@ -118,8 +122,14 @@ function draw() {
     drawTv(posTvs[i], i);
 
     var isDead = checkIfDead(posTvs[i]);
-    if(isDead){
+
+    if(isDead && aMuritOData == false){
       console.log('DEAD');
+      aMuritOData = true;
+      clearInterval(drawInerval);
+      clearInterval(logicInterval);
+      setInterval(bigBum, 10);
+      restartPanel();
     }
   }
   drawPlayer(pos);
@@ -174,4 +184,33 @@ function checkIfDead(posTv) {
       return true;
     }
     return false;
+}
+
+function bigBum (){
+  ctx.clearRect(0 , 0 ,canvas.width, canvas.height);
+  for (var i = 0 ; i < Math.floor(canvas.width/10);i++){
+    for (var j = 0 ; j <Math.floor(canvas.height/10); j++){
+      GlitchCubb.cubb(+i *10, j *10);
+    }
+  }
+}
+
+function restartPanel (){
+  var pointXCenter = canvas.width /2;
+  var point = [pointXCenter - canvas.width/4 , 300];
+
+
+  function drawRestartPanel(){
+    ctx.font = '100px Impact, Charcoal, sans-serif';
+    ctx.fillStyle = color2;
+    ctx.fillText('SCORE: ' + score , 100 ,100);
+    ctx.fillText('PRESS R TO RESTART ' , 100 ,200);
+  }
+  setInterval(drawRestartPanel,5);
+  document.addEventListener("keydown", rHandler, false);
+  function rHandler(e) {
+    if (e.keyCode == 82) {
+      location.reload();
+    }
+  }
 }

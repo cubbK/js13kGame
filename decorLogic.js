@@ -10,11 +10,12 @@ function drawHouse(pos) {
 }
 
 function drawAllHouses(){
-  ctx.clearRect(-10 , -10 , borderLeft-10,755);
-  ctx.clearRect(borderRight+10 , -10 , canvas.width+10,755);
+  ctx.clearRect(-10 , -10 , borderLeft +100,755);
+  ctx.clearRect(borderRight-40 , -10 , canvas.width+10,755);
 
   //left part
-  for(var i = borderLeft -50; i >-100; i-=40){
+  var rangeLeft = Math.floor(Math.random()*(200-50+1)+50);
+  for(var i = borderLeft +40 -rangeLeft; i >- 100; i-=40){
     for (var j = 0; j < canvas.height -50; j+=40){
       var rand = Math.random();
       if (rand>0.4){
@@ -24,7 +25,8 @@ function drawAllHouses(){
     }
   }
   //right part
-  for(var i = borderRight ; i< canvas.width ; i+=40){
+  var rangeRight = Math.floor(Math.random()*(200-50+1)+50);
+  for(var i = borderRight + rangeRight  - 80; i< canvas.width ; i+=40){
     for (var j = 0 ; j < canvas.height -50; j+=40){
       var rand = Math.random();
       if (rand>0.4){
@@ -35,5 +37,5 @@ function drawAllHouses(){
   }
 }
 function startLogicDecor() {
-    setInterval(drawAllHouses,150);
+    logicInterval = setInterval(drawAllHouses,150);
 }
