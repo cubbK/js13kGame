@@ -179,9 +179,14 @@ function returnPosArray (){
 }
 
 function checkIfDead(posTv) {
-    if (posTv[0] +80 > pos[0] && posTv[0] +80  < pos[0]+50 && posTv[1]+80 > pos[1] && posTv[1]+80 < pos[1] +75){
+    var rect1X  = posTv[0] + 55;
+    var rect1Y  = posTv[1] + 55;
+    var rect2X  = pos[0] + 25
+    var rect2Y = pos[1] + 37;
 
-      return true;
+    if (rect1X < rect2X + 50 && rect1X + 50 > rect2X && rect1Y < rect2Y + 75 && 50 + rect1Y > rect2Y) {
+       console.log('dead');
+       return true;
     }
     return false;
 }
