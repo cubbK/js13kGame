@@ -100,7 +100,7 @@ function drawPlayerPortrer(pos) {
   ctx.fillStyle = color2;
   ctx.fill();
   ctx.closePath();
-<<<<<<< HEAD
+
 
   //right eye
   ctx.beginPath();
@@ -109,24 +109,13 @@ function drawPlayerPortrer(pos) {
   ctx.fill();
   ctx.closePath();
 
-=======
 
-  //right eye
-  ctx.beginPath();
-  ctx.arc(pos[0] +60, pos[1] +25, 15, 0, Math.PI*2, false);
-  ctx.fillStyle = color2;
-  ctx.fill();
-  ctx.closePath();
-
->>>>>>> refs/remotes/origin/experimentam-cu-decor
   // mouth
   ctx.beginPath();
   ctx.arc(pos[0] +40, pos[1] +80, 25, 3, Math.PI*2, false);
   ctx.fillStyle = color2;
   ctx.fill();
   ctx.closePath();
-<<<<<<< HEAD
-=======
 }
 function drawText(){
   var point = [canvas.width/2 -250 ,25];
@@ -158,14 +147,12 @@ function spaceHandler(e) {
     startLogic();
     startLogicDecor();
   }
->>>>>>> refs/remotes/origin/experimentam-cu-decor
+
 }
 
 
 drawDocumentBorders();
 drawPhotoFrame();
 drawPlayerPortrer([canvas.width/2 -175 , 100]);
-<<<<<<< HEAD
-=======
+
 drawText();
->>>>>>> refs/remotes/origin/experimentam-cu-decor
