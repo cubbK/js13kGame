@@ -166,8 +166,11 @@ function drawTv(posTv , index) {
 
 function returnPosArray (){
   var posX =  Math.round(Math.random() * (borderRight-100 - borderLeft) + borderLeft);
-  var difficulty = score *0.1;
-  var posY  = Math.round(Math.random() *(-2500) -50);
+  var difficulty = 0;
+  if (difficulty <3.0){
+      difficulty = score *0.1;
+  }
+     var posY  = Math.round(Math.random() *(-2500) -50);
   var dirX;
   var dirY  = Math.round(Math.random() *7+3  + difficulty);
   if (Math.random() >0.5){
@@ -211,7 +214,7 @@ function restartPanel (){
     ctx.fillText('SCORE: ' + score , 100 ,100);
     ctx.fillText('PRESS R TO RESTART ' , 100 ,200);
   }
-  setInterval(drawRestartPanel,5);
+  setInterval(drawRestartPanel,3);
   document.addEventListener("keydown", rHandler, false);
   function rHandler(e) {
     if (e.keyCode == 82) {
