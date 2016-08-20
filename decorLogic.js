@@ -19,7 +19,7 @@ function drawAllHouses(){
     for (var j = 0; j < canvas.height -50; j+=40){
       var rand = Math.random();
       if (rand>0.4){
-          drawPlayer([i,j])
+          drawPlayer([i,j]);
       }
 
     }

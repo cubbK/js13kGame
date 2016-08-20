@@ -166,14 +166,14 @@ function drawTv(posTv , index) {
 
 function returnPosArray (){
   var posX =  Math.round(Math.random() * (borderRight-100 - borderLeft) + borderLeft);
-
+  var difficulty = score *0.1;
   var posY  = Math.round(Math.random() *(-2500) -50);
   var dirX;
-  var dirY  = Math.round(Math.random() *7+3);
+  var dirY  = Math.round(Math.random() *7+3  + difficulty);
   if (Math.random() >0.5){
-    dirX = Math.round(Math.random() *5);
+    dirX = Math.round(Math.random() *5 + difficulty);
   }else {
-    dirX = Math.round(Math.random() * -5);
+    dirX = Math.round(Math.random() * -5  - difficulty);
   }
   return [ posX, posY,dirX,dirY ];
 }
