@@ -124,12 +124,14 @@ function draw() {
     var isDead = checkIfDead(posTvs[i]);
 
     if(isDead && aMuritOData == false){
-      console.log('DEAD');
+
       aMuritOData = true;
       clearInterval(drawInerval);
       clearInterval(logicInterval);
+
       setInterval(bigBum, 10);
       restartPanel();
+
     }
   }
   drawPlayer(pos);
@@ -188,7 +190,7 @@ function checkIfDead(posTv) {
     var rect2Y = pos[1] + 37;
 
     if (rect1X < rect2X + 50 && rect1X + 50 > rect2X && rect1Y < rect2Y + 75 && 50 + rect1Y > rect2Y) {
-       console.log('dead');
+
        return true;
     }
     return false;
@@ -207,14 +209,14 @@ function restartPanel (){
   var pointXCenter = canvas.width /2;
   var point = [pointXCenter - canvas.width/4 , 300];
 
-
+  ctx.font = '100px Impact, Charcoal, sans-serif';
   function drawRestartPanel(){
-    ctx.font = '100px Impact, Charcoal, sans-serif';
+
     ctx.fillStyle = color2;
     ctx.fillText('SCORE: ' + score , 100 ,100);
     ctx.fillText('PRESS R TO RESTART ' , 100 ,200);
   }
-  setInterval(drawRestartPanel,3);
+  setInterval(drawRestartPanel,10);
   document.addEventListener("keydown", rHandler, false);
   function rHandler(e) {
     if (e.keyCode == 82) {

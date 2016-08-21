@@ -156,3 +156,14 @@ drawPhotoFrame();
 drawPlayerPortrer([canvas.width/2 -175 , 100]);
 
 drawText();
+
+ // sound
+
+var songGen = new sonantx.MusicGenerator(jsonSong);
+var audioCtx =  new AudioContext();
+songGen.createAudioBuffer(function(buffer) {
+    var source = audioCtx.createBufferSource();
+    source.buffer = buffer;
+    source.connect(audioCtx.destination);
+    source.start();
+});
