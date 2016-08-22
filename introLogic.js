@@ -139,7 +139,7 @@ function drawText(){
 
 }
 var joculSaInceput = false;
-document.addEventListener("keydown", spaceHandler, false);
+
 function spaceHandler(e) {
   if ( e.keyCode == 32 && joculSaInceput ==false){
     joculSaInceput = true;
@@ -151,19 +151,6 @@ function spaceHandler(e) {
 }
 
 
-drawDocumentBorders();
-drawPhotoFrame();
-drawPlayerPortrer([canvas.width/2 -175 , 100]);
 
-drawText();
 
  // sound
-
-var songGen = new sonantx.MusicGenerator(jsonSong);
-var audioCtx =  new AudioContext();
-songGen.createAudioBuffer(function(buffer) {
-    var source = audioCtx.createBufferSource();
-    source.buffer = buffer;
-    source.connect(audioCtx.destination);
-    source.start();
-});
