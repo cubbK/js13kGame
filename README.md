@@ -1,4 +1,4 @@
-![Long Image](img1.png)
+![Long Image](img/img1.png)
 ## Title: Mess My Brain
 
 My entry for 2016 edition of  js13KGames
